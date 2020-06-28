@@ -6,26 +6,28 @@ import (
 	"io/ioutil"
 	"log"
 	"path"
+	"time"
 
 	"github.com/BurntSushi/toml"
 )
 
 // StudentConfig 解析toml配置文件
 type StudentConfig struct {
-	Name     string `toml:"name"`
-	ID       int    `toml:"id"`
-	Password string `toml:"password"`
-	Province string `toml:"province"`
-	City     string `toml:"city"`
-	District string `toml:"district"`
-	Address  string `toml:"address"`
-	Ymtys    int    `toml:"ymtys"`
-	Tw       int    `toml:"tw"`
-	Sfzx     int    `toml:"sfzx"`
-	Sfcyglq  int    `toml:"sfcyglq"`
-	Sfyzz    int    `toml:"sfyzz"`
-	Cookie   string `toml:"cookie"`
-	Path     string `toml:"path"`
+	Name              string    `toml:"name"`
+	ID                int       `toml:"id"`
+	Password          string    `toml:"password"`
+	Province          string    `toml:"province"`
+	City              string    `toml:"city"`
+	District          string    `toml:"district"`
+	Address           string    `toml:"address"`
+	Ymtys             int       `toml:"ymtys"`
+	Tw                int       `toml:"tw"`
+	Sfzx              int       `toml:"sfzx"`
+	Sfcyglq           int       `toml:"sfcyglq"`
+	Sfyzz             int       `toml:"sfyzz"`
+	Cookie            string    `toml:"cookie"`
+	Path              string    `toml:"path"`
+	LastestUpdateTime time.Time `toml:"lastestupdatetime"`
 }
 
 // CollectConfigs 收集toml配置文件

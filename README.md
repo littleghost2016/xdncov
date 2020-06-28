@@ -12,7 +12,7 @@
 ```toml
 # 已返校同学可只更改前三项
 name     = "张三"        # 姓名
-id       = "11111111111" # 学号
+id       = 11111111111 # 学号
 password = "11111111"    # 密码
 
 # 其他内容可不更改
@@ -29,27 +29,34 @@ sfyzz    = 0 # 是否有症状
 # 以下内容可能会由程序自动更改
 cookie   = "" # 用作持久化
 path     = "" # 文件保存路径
+lastupdatetime = "" # 最后一次更新时间
 ```
 
 ## 执行
 
 下载对应平台的可执行文件，执行即可。
 
-### PowerShell
+### PowerShell in Windows
 
 ```powershell
-.\xdncov.exe
+.\xdncov_windows_amd64.exe
 ```
 
-### bash/zsh
+### bash/zsh in Linux
 
 ```bash
-./xdncov
+./xdncov_linux_amd64
+```
+
+### bash/zsh in MacOS
+
+```bash
+./xdncov_darwin_amd64
 ```
 
 ## 后续工作
 
 - [x] 持久化存储
-- [ ] 定时执行
-- [ ] Toml添加最后一次提交时间
+- [x] 定时执行
+- [x] toml添加最后一次提交时间
 - [ ] 邮件提醒
