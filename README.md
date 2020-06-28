@@ -36,19 +36,19 @@ lastupdatetime = "" # 最后一次更新时间
 
 下载对应平台的可执行文件，执行即可。
 
-### PowerShell in Windows
+### PowerShell on Windows
 
 ```powershell
 .\xdncov_windows_amd64.exe
 ```
 
-### bash/zsh in Linux
+### bash/zsh on Linux
 
 ```bash
 ./xdncov_linux_amd64
 ```
 
-### bash/zsh in MacOS
+### bash/zsh on MacOS
 
 ```bash
 ./xdncov_darwin_amd64
