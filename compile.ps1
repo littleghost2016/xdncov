@@ -1,5 +1,5 @@
-$env:GOOS="windows"
 $env:GOARCH="amd64"
+$env:GOOS="windows"
 go build -o xdncov_windows_amd64.exe
 
 $env:GOOS="linux"
