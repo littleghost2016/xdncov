@@ -55,5 +55,6 @@ func main() {
 
 	job1 := Job{}
 
+	// 检查cron书写格式 https://crontab.guru/
 	StartJob("3,7 0,12 * * *", job1)
 }
