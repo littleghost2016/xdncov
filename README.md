@@ -32,31 +32,36 @@ path     = "" # 文件保存路径
 lastupdatetime = "" # 最后一次更新时间
 ```
 
-## 执行
+## 运行
 
-下载对应平台的可执行文件，执行即可。
+直接下载对应平台的可执行文件，执行即可。无需克隆整个仓库；或者说，克隆以后，除了`configs`文件夹和下载好的二进制文件，其余皆可删除。
 
-### PowerShell in Windows
+### PowerShell on Windows
 
 ```powershell
 .\xdncov_windows_amd64.exe
 ```
 
-### bash/zsh in Linux
+### bash/zsh on Linux
 
 ```bash
 ./xdncov_linux_amd64
 ```
 
-### bash/zsh in MacOS
+### bash/zsh on MacOS
 
 ```bash
 ./xdncov_darwin_amd64
 ```
+
+## 使用.service时
+
+请更改`WorkingDirectory`至可执行程序所在的文件夹。
 
 ## 后续工作
 
 - [x] 持久化存储
 - [x] 定时执行
 - [x] toml添加最后一次提交时间
+- [x] 日志输出
 - [ ] 邮件提醒

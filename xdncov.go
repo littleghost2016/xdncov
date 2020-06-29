@@ -36,9 +36,11 @@ func (this Job) Run() {
 		// 为可能的并发做准备
 		// go signIn(eachConfig)
 
-		time.Sleep(time.Second * time.Duration(rand.Intn(5)))
+		time.Sleep(time.Second * time.Duration(rand.Intn(10)))
 		SignIn(eachConfig)
 	}
+
+	StandardLog(1, "--------------------------------------------------------------")
 }
 
 func main() {
@@ -52,8 +54,10 @@ func main() {
 		time.Sleep(time.Second * time.Duration(rand.Intn(5)))
 		SignIn(eachConfig)
 	}
+	StandardLog(1, "--------------------------------------------------------------")
 
 	job1 := Job{}
 
+	// 检查cron书写格式 https://crontab.guru/
 	StartJob("3,7 0,12 * * *", job1)
 }

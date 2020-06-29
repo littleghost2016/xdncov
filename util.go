@@ -9,11 +9,11 @@ type HTTPResponse struct {
 	D EmptyStruct `json:"d"`
 }
 
-// EmptyStruct HTTPResponse.D
+// EmptyStruct 解析HTTPResponse.D
 type EmptyStruct struct {
 }
 
-// unmarshalHTTPResponse 解析json消息
+// UnmarshalHTTPResponse 解析json消息
 func UnmarshalHTTPResponse(response []byte) (newHTTPResponse HTTPResponse) {
 	newHTTPResponse = HTTPResponse{}
 	json.Unmarshal(response, &newHTTPResponse)

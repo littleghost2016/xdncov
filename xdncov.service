@@ -1,0 +1,10 @@
+[Unit]
+Description=Report ncov automatically
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ubuntu/git_repository/xdncov
+ExecStart=./xdncov_linux_amd64
+
+[Install]
+WantedBy=multi-user.target
