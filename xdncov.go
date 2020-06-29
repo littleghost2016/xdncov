@@ -36,9 +36,11 @@ func (this Job) Run() {
 		// 为可能的并发做准备
 		// go signIn(eachConfig)
 
-		time.Sleep(time.Second * time.Duration(rand.Intn(5)))
+		time.Sleep(time.Second * time.Duration(rand.Intn(10)))
 		SignIn(eachConfig)
 	}
+
+	StandardLog(1, "--------------------------------------------------------------")
 }
 
 func main() {
@@ -52,6 +54,7 @@ func main() {
 		time.Sleep(time.Second * time.Duration(rand.Intn(5)))
 		SignIn(eachConfig)
 	}
+	StandardLog(1, "--------------------------------------------------------------")
 
 	job1 := Job{}
 

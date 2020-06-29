@@ -49,18 +49,18 @@ func SignIn(config StudentConfig) {
 		firstPostClient.OnRequest(func(request *colly.Request) {
 			firstPostClient.SetCookies(BaseURL, storage.UnstringifyCookies(config.Cookie))
 		})
-		MyPrint(config.ID, "正在尝试使用cookie提交  ")
+		StandardLog(config.ID, "正在尝试使用cookie提交  ")
 		firstPostClient.OnResponse(func(r *colly.Response) {
 			tempResponse := UnmarshalHTTPResponse(r.Body)
 			if tempResponse.M != "" {
 				if tempResponse.M == "操作成功" {
 					firstPostSuccessFlag = true
-					MyPrintln(config.ID, "使用cookie提交成功")
+					StandardLog(config.ID, "使用cookie提交成功")
 					config.LastestUpdateTime = time.Now()
 					UpdateConfig(config)
 				} else if tempResponse.M == "您已上报过" {
 					firstPostSuccessFlag = true
-					MyPrintln(config.ID, "使用cookie时查询到本阶段已上报过")
+					StandardLog(config.ID, "使用cookie时查询到本阶段已上报过")
 				}
 			}
 		})
@@ -71,7 +71,7 @@ func SignIn(config StudentConfig) {
 		firstLoginClient := firstPostClient.Clone()
 		loginFlag := Login(firstLoginClient, strconv.Itoa(config.ID), config.Password)
 		if loginFlag {
-			MyPrintln(config.ID, "登陆成功")
+			StandardLog(config.ID, "登陆成功")
 		}
 
 		secondPostClient := firstLoginClient.Clone()
@@ -80,19 +80,21 @@ func SignIn(config StudentConfig) {
 			if tempResponse.M != "" {
 				if tempResponse.M == "操作成功" {
 					// secondPostSuccessFlag = true
-					MyPrintln(config.ID, "登陆后提交成功")
+					StandardLog(config.ID, "登陆后提交成功")
 					newCookie := storage.StringifyCookies(secondPostClient.Cookies(response.Request.URL.String()))
 					config.Cookie = newCookie
 					config.LastestUpdateTime = time.Now()
 					UpdateConfig(config)
 				} else if tempResponse.M == "您已上报过" {
 					// secondPostSuccessFlag = true
-					MyPrintln(config.ID, "登陆后查询到本阶段已上报过")
+					StandardLog(config.ID, "登陆后查询到本阶段已上报过")
 				}
 			}
 		})
 		PostSaveForm(secondPostClient, config)
 	}
+
+	StandardLog(0, "+++++")
 }
 
 // Login 当持久化未能通过时，模拟登录以获得cookie
