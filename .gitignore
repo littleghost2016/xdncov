@@ -13,3 +13,12 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# 个人配置文件
+configs/*.toml
+
+# 编译出的二进制文件
+xdncov_darwin_amd64
+xdncov_linux_amd64
+xdncov_linux_arm64
+xdncov_windows_amd64.exe
