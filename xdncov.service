@@ -2,9 +2,13 @@
 Description=xdncov
 
 [Service]
+User=ubuntu
+Group=ubuntu
 Type=simple
 WorkingDirectory=/home/ubuntu/git_repository/xdncov
 ExecStart=/home/ubuntu/git_repository/xdncov/xdncov_linux_amd64
+Restart=on-failure
+RestartSec=10s
 
 [Install]
 WantedBy=multi-user.target
