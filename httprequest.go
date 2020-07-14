@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 	"strconv"
 	"time"
 
@@ -72,6 +73,9 @@ func SignIn(config StudentConfig) {
 		loginFlag := Login(firstLoginClient, strconv.Itoa(config.ID), config.Password)
 		if loginFlag {
 			StandardLog(config.ID, "登陆成功")
+		} else {
+			StandardLog(config.ID, "登陆失败")
+			os.Exit(1)
 		}
 
 		secondPostClient := firstLoginClient.Clone()
@@ -89,6 +93,8 @@ func SignIn(config StudentConfig) {
 					// secondPostSuccessFlag = true
 					StandardLog(config.ID, "登陆后查询到本阶段已上报过")
 				}
+			} else {
+				StandardLog(config.ID, "提交失败，或返回信息无法处理")
 			}
 		})
 		PostSaveForm(secondPostClient, config)
