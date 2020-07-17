@@ -44,6 +44,10 @@ func (this Job) Run() {
 }
 
 func main() {
+	// 读取主配置文件信息
+	mainConfig := ReadMainConfig("./configs/main.toml")
+	// fmt.Println(mainConfig)
+	SetMainConfig(mainConfig)
 
 	// 首次运行程序则立即执行
 	studentConfigSlice := CollectConfigs("./configs")
@@ -53,11 +57,12 @@ func main() {
 
 		time.Sleep(time.Second * time.Duration(rand.Intn(5)))
 		SignIn(eachConfig)
+		// fmt.Println(eachConfig)
 	}
 	StandardLog(1, "--------------------------------------------------------------")
 
 	job1 := Job{}
 
 	// 检查cron书写格式 https://crontab.guru/
-	StartJob("3,7 0,12 * * *", job1)
+	StartJob(mainConfig.Cron, job1)
 }

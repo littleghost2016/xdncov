@@ -10,29 +10,38 @@ import (
 	"github.com/gocolly/colly/storage"
 )
 
-const (
+var (
 	// BaseURL 域名URL
-	BaseURL = "https://xxcapp.xidian.edu.cn"
-	// LoginURL 登录URL
-	LoginURL = "https://xxcapp.xidian.edu.cn/uc/wap/login/check"
-	// SaveURL 提交结果URL
-	SaveURL = "https://xxcapp.xidian.edu.cn/ncov/wap/open-report/save"
-	// MyUserAgent 模拟手机UA
-	MyUserAgent = "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.45 Mobile Safari/537.36 Edg/84.0.522.20"
+	BaseURL string
+	// 	// LoginURL 登录URL
+	LoginURL string
+	// 	// SaveURL 提交结果URL
+	SaveURL string
+	// 	// MyUserAgent 模拟手机UA
+	MyUserAgent string
 )
+
+func SetMainConfig(mainConfig MainConfig) {
+	BaseURL = mainConfig.BaseURL
+	LoginURL = mainConfig.LoginURL
+	SaveURL = mainConfig.SaveURL
+	MyUserAgent = mainConfig.MyUserAgent
+	// fmt.Println(BaseURL, LoginURL, SaveURL, MyUserAgent)
+}
 
 // PostSaveForm 提交晨午检表单
 func PostSaveForm(newClient *colly.Collector, config StudentConfig) {
 	savePostForm := map[string]string{
-		"province": config.Province,
-		"city":     config.City,
-		"district": config.District,
-		"address":  config.Address,
-		"ymtys":    strconv.Itoa(config.Ymtys),
-		"tw":       strconv.Itoa(config.Tw),
-		"sfzx":     strconv.Itoa(config.Sfzx),
-		"sfcyglq":  strconv.Itoa(config.Sfcyglq),
-		"sfyzz":    strconv.Itoa(config.Sfyzz),
+		"province":    config.Province,
+		"city":        config.City,
+		"area":        config.Address,
+		"address":     config.Address,
+		"tw":          strconv.Itoa(config.Tw),
+		"sfzx":        strconv.Itoa(config.Sfzx),
+		"sfcyglq":     strconv.Itoa(config.Sfcyglq),
+		"sfyzz":       strconv.Itoa(config.Sfyzz),
+		"askforleave": strconv.Itoa(config.Askforleave),
+		"qtqk":        config.Qtqk,
 	}
 	err := newClient.Post(SaveURL, savePostForm)
 	if err != nil {
