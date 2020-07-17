@@ -16,6 +16,7 @@
 
 # 个人配置文件
 configs/*.toml
+!configs/main.toml
 
 # 编译出的二进制文件
 xdncov_darwin_amd64
