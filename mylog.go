@@ -4,7 +4,6 @@ import (
 	"io"
 	"os"
 
-	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -21,7 +20,7 @@ func init() {
 	log.SetOutput(io.MultiWriter(file, os.Stdout))
 
 	//设置最低loglevel
-	logrus.SetLevel(logrus.InfoLevel)
+	log.SetLevel(log.InfoLevel)
 }
 
 func StandardLog(ID int, message string) {

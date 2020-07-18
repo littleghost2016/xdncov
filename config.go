@@ -18,16 +18,25 @@ type StudentConfig struct {
 	Password          string    `toml:"password"`
 	Province          string    `toml:"province"`
 	City              string    `toml:"city"`
-	District          string    `toml:"district"`
+	Area              string    `toml:"area"`
 	Address           string    `toml:"address"`
-	Ymtys             int       `toml:"ymtys"`
 	Tw                int       `toml:"tw"`
 	Sfzx              int       `toml:"sfzx"`
 	Sfcyglq           int       `toml:"sfcyglq"`
 	Sfyzz             int       `toml:"sfyzz"`
+	Askforleave       int       `toml:"askforleave"`
+	Qtqk              string    `toml:"qtqk"`
 	Cookie            string    `toml:"cookie"`
 	Path              string    `toml:"path"`
 	LastestUpdateTime time.Time `toml:"lastestupdatetime"`
+}
+
+type MainConfig struct {
+	Cron        string `toml:"cron"`
+	BaseURL     string `toml:"BaseURL"`
+	LoginURL    string `toml:"LoginURL"`
+	SaveURL     string `toml:"SaveURL"`
+	MyUserAgent string `toml:"MyUserAgent"`
 }
 
 // CollectConfigs 收集toml配置文件
@@ -43,12 +52,14 @@ func CollectConfigs(configDirectoryPath string) (studentConfigSlice []StudentCon
 		//filenameWithSuffix: 文件名带后缀。
 		// fmt.Println("filenameWithSuffix =", filenameWithSuffix)
 
-		fileSuffix := path.Ext(filenameWithSuffix)
-		//fileSuffix: 文件后缀
-		// fmt.Println("fileSuffix =", fileSuffix)
-		if fileSuffix == ".toml" {
-			configPath := fmt.Sprintf("%s/%s", configDirectoryPath, eachFileName.Name())
-			studentConfigSlice = append(studentConfigSlice, ReadConfig(configPath))
+		if filenameWithSuffix != "main.toml" {
+			fileSuffix := path.Ext(filenameWithSuffix)
+			//fileSuffix: 文件后缀
+			// fmt.Println("fileSuffix =", fileSuffix)
+			if fileSuffix == ".toml" {
+				configPath := fmt.Sprintf("%s/%s", configDirectoryPath, eachFileName.Name())
+				studentConfigSlice = append(studentConfigSlice, ReadConfig(configPath))
+			}
 		}
 	}
 
@@ -61,6 +72,7 @@ func ReadConfig(configPath string) (tempConfig StudentConfig) {
 		log.Fatalln(err)
 	}
 	tempConfig.Path = configPath
+	// fmt.Println("配置文件", tempConfig)
 
 	return
 }
@@ -75,4 +87,12 @@ func UpdateConfig(newConfig StudentConfig) {
 	if ioutil.WriteFile(newConfig.Path, buf.Bytes(), 0644) == nil {
 		fmt.Println("写入文件成功:", newConfig.Path)
 	}
+}
+
+func ReadMainConfig(mainConfigPath string) (mainConfig MainConfig) {
+	if _, err := toml.DecodeFile(mainConfigPath, &mainConfig); err != nil {
+		log.Fatalln(err)
+	}
+
+	return
 }
