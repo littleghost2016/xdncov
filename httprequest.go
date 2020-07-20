@@ -13,11 +13,11 @@ import (
 var (
 	// BaseURL 域名URL
 	BaseURL string
-	// 	// LoginURL 登录URL
+	// LoginURL 登录URL
 	LoginURL string
-	// 	// SaveURL 提交结果URL
+	// SaveURL 提交结果URL
 	SaveURL string
-	// 	// MyUserAgent 模拟手机UA
+	// MyUserAgent 模拟手机UA
 	MyUserAgent string
 )
 
@@ -34,7 +34,7 @@ func PostSaveForm(newClient *colly.Collector, config StudentConfig) {
 	savePostForm := map[string]string{
 		"province":    config.Province,
 		"city":        config.City,
-		"area":        config.Address,
+		"area":        config.Area,
 		"address":     config.Address,
 		"tw":          strconv.Itoa(config.Tw),
 		"sfzx":        strconv.Itoa(config.Sfzx),
