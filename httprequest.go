@@ -1,12 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"net/http"
 	"os"
 	"strconv"
-	"strings"
 	"time"
 
 	"github.com/gocolly/colly"
@@ -52,23 +49,6 @@ func PostSaveForm(newClient *colly.Collector, config StudentConfig) {
 	}
 }
 
-func PostWX(rstText string, config StudentConfig) {
-	SCKEY := config.SCKEY
-	url := "https://sc.ftqq.com/" + SCKEY + ".send"
-	method := "POST"
-	payload := strings.NewReader("text=" + rstText + "&desp=119club np!")
-	client := &http.Client{}
-	req, err := http.NewRequest(method, url, payload)
-	if err != nil {
-		fmt.Println(err)
-	}
-	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-	res, err := client.Do(req)
-	defer res.Body.Close()
-	//body, err := ioutil.ReadAll(res.Body)
-	//fmt.Println(string(body))
-}
-
 // SignIn HTTP主要步骤
 func SignIn(config StudentConfig) {
 	firstPostClient := colly.NewCollector()
@@ -82,8 +62,6 @@ func SignIn(config StudentConfig) {
 		StandardLog(config.ID, "正在尝试使用cookie提交  ")
 		firstPostClient.OnResponse(func(r *colly.Response) {
 			tempResponse := UnmarshalHTTPResponse(r.Body)
-			// Server酱
-			PostWX(tempResponse.M, config)
 			if tempResponse.M != "" {
 				if tempResponse.M == "操作成功" {
 					firstPostSuccessFlag = true

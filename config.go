@@ -29,7 +29,6 @@ type StudentConfig struct {
 	Cookie            string    `toml:"cookie"`
 	Path              string    `toml:"path"`
 	LastestUpdateTime time.Time `toml:"lastestupdatetime"`
-	SCKEY			  string    `toml:"SCKEY"`
 }
 
 type MainConfig struct {
