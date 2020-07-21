@@ -52,8 +52,8 @@ func PostSaveForm(newClient *colly.Collector, config StudentConfig) {
 	}
 }
 
-func PostWX(rstText string, config StudentConfig) {
-	SCKEY := config.SCKEY
+// PostWX 向server酱服务端发送消息
+func PostWX(rstText string, SCKEY string) {
 	url := "https://sc.ftqq.com/" + SCKEY + ".send"
 	method := "POST"
 	payload := strings.NewReader("text=" + rstText + "&desp=119club np!")
@@ -64,12 +64,15 @@ func PostWX(rstText string, config StudentConfig) {
 	}
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+	}
 	defer res.Body.Close()
 	//body, err := ioutil.ReadAll(res.Body)
 	//fmt.Println(string(body))
 }
 
-// SignIn HTTP主要步骤
+// SignIn HTTP请求主要函数
 func SignIn(config StudentConfig) {
 	firstPostClient := colly.NewCollector()
 	firstPostClient.UserAgent = MyUserAgent
@@ -81,19 +84,23 @@ func SignIn(config StudentConfig) {
 		})
 		StandardLog(config.ID, "正在尝试使用cookie提交  ")
 		firstPostClient.OnResponse(func(r *colly.Response) {
+			message := ""
 			tempResponse := UnmarshalHTTPResponse(r.Body)
-			// Server酱
-			PostWX(tempResponse.M, config)
 			if tempResponse.M != "" {
 				if tempResponse.M == "操作成功" {
 					firstPostSuccessFlag = true
-					StandardLog(config.ID, "使用cookie提交成功")
+					message = "使用cookie提交成功"
 					config.LastestUpdateTime = time.Now()
 					UpdateConfig(config)
 				} else if tempResponse.M == "您已上报过" {
 					firstPostSuccessFlag = true
-					StandardLog(config.ID, "使用cookie时查询到本阶段已上报过")
+					message = "使用cookie时查询到本阶段已上报过"
 				}
+			}
+			StandardLog(config.ID, message)
+			// Server酱
+			if config.SCKEY != "SCU89912...f4a70230" && config.SCKEY != "" {
+				PostWX(message, config.SCKEY)
 			}
 		})
 		PostSaveForm(firstPostClient, config)
@@ -112,20 +119,24 @@ func SignIn(config StudentConfig) {
 		secondPostClient := firstLoginClient.Clone()
 		secondPostClient.OnResponse(func(response *colly.Response) {
 			tempResponse := UnmarshalHTTPResponse(response.Body)
+			message := ""
 			if tempResponse.M != "" {
 				if tempResponse.M == "操作成功" {
-					// secondPostSuccessFlag = true
-					StandardLog(config.ID, "登陆后提交成功")
+					message = "登陆后提交成功"
 					newCookie := storage.StringifyCookies(secondPostClient.Cookies(response.Request.URL.String()))
 					config.Cookie = newCookie
 					config.LastestUpdateTime = time.Now()
 					UpdateConfig(config)
 				} else if tempResponse.M == "您已上报过" {
-					// secondPostSuccessFlag = true
-					StandardLog(config.ID, "登陆后查询到本阶段已上报过")
+					message = "登陆后查询到本阶段已上报过"
 				}
 			} else {
-				StandardLog(config.ID, "提交失败，或返回信息无法处理")
+				message = "提交失败，或返回信息无法处理"
+			}
+			StandardLog(config.ID, message)
+			// Server酱
+			if config.SCKEY != "SCU89912...f4a70230" && config.SCKEY != "" {
+				PostWX(message, config.SCKEY)
 			}
 		})
 		PostSaveForm(secondPostClient, config)
