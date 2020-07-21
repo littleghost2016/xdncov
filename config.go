@@ -26,10 +26,10 @@ type StudentConfig struct {
 	Sfyzz             int       `toml:"sfyzz"`
 	Askforleave       int       `toml:"askforleave"`
 	Qtqk              string    `toml:"qtqk"`
+	SCKEY             string    `toml:"SCKEY"`
 	Cookie            string    `toml:"cookie"`
 	Path              string    `toml:"path"`
 	LastestUpdateTime time.Time `toml:"lastestupdatetime"`
-	SCKEY			  string    `toml:"SCKEY"`
 }
 
 type MainConfig struct {
