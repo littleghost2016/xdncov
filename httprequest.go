@@ -35,16 +35,16 @@ func SetMainConfig(mainConfig MainConfig) {
 // PostSaveForm 提交晨午检表单
 func PostSaveForm(newClient *colly.Collector, config StudentConfig) {
 	savePostForm := map[string]string{
-		"province":    config.Province,
-		"city":        config.City,
-		"area":        config.Area,
-		"address":     config.Address,
-		"tw":          strconv.Itoa(config.Tw),
-		"sfzx":        strconv.Itoa(config.Sfzx),
-		"sfcyglq":     strconv.Itoa(config.Sfcyglq),
-		"sfyzz":       strconv.Itoa(config.Sfyzz),
-		"askforleave": strconv.Itoa(config.Askforleave),
-		"qtqk":        config.Qtqk,
+		"province": config.Province,
+		"city":     config.City,
+		"area":     config.Area,
+		"address":  config.Address,
+		"tw":       strconv.Itoa(config.Tw),
+		"sfzx":     strconv.Itoa(config.Sfzx),
+		"sfcyglq":  strconv.Itoa(config.Sfcyglq),
+		"sfyzz":    strconv.Itoa(config.Sfyzz),
+		"ymtys":    strconv.Itoa(config.Ymtys),
+		"qtqk":     config.Qtqk,
 	}
 	err := newClient.Post(SaveURL, savePostForm)
 	if err != nil {

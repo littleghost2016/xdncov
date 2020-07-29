@@ -24,7 +24,7 @@ type StudentConfig struct {
 	Sfzx              int       `toml:"sfzx"`
 	Sfcyglq           int       `toml:"sfcyglq"`
 	Sfyzz             int       `toml:"sfyzz"`
-	Askforleave       int       `toml:"askforleave"`
+	Ymtys             int       `toml:"ymtys"`
 	Qtqk              string    `toml:"qtqk"`
 	SCKEY             string    `toml:"SCKEY"`
 	Cookie            string    `toml:"cookie"`
