@@ -6,7 +6,7 @@
 
 ### 文件准备
 
-创建`configs`文件夹，按照`example.config`，改成自己的配置文件并更改文件名以`.toml`为后缀。
+创建`configs`文件夹，按照`example.config`，改成自己的配置文件并更改文件名以`.toml`为后缀（文件名随意）。
 
 例如`11111111111.toml`
 
@@ -23,12 +23,34 @@ area        = "陕西省 西安市 长安区"
 address     = "陕西省西安市西沣路兴隆段266号"
 
 # 请根据个人实际情况填写
-tw          = 1  # 今日体温         1: 36-36.5摄氏度
-sfzx        = 1  # 是否在校         1: 在校
-sfcyglq     = 0  # 是否处于隔离期   0: 未处于隔离期
-sfyzz       = 0  # 是否有症状       0: 无症状
-ymtys       = 0  # 一码通颜色       0: 绿色
-qtqk        = "" # 其他情况         空: 无其他情况
+szgjcs      = ""
+szcs        = ""
+szgj        = ""
+zgfxdq      = "0"
+mjry        = "0"
+csmjry      = "0"
+tw          = "2"
+sfcxtz      = "0"
+sfjcbh      = "0"
+sfcxzysx    = "0"
+qksm        = ""
+sfyyjc      = "0"
+jcjgqr      = "0"
+remark      = ""
+sfzx        = "0"
+sfjcwhry    = "0"
+sfjchbry    = "0"
+sfcyglq     = "0"
+gllx        = ""
+glksrq      = ""
+jcbhlx      = ""
+jcbhrq      = ""
+ismoved     = "0"
+bztcyy      = ""
+sftjhb      = "0"
+sftjwh      = "0"
+sfjcjwry    = "0"
+jcjg        = ""
 
 # 以下内容会由程序自动更改，如果不清楚如何正确修改，可不用理会
 cookie   	= "" # 用作持久化
@@ -51,19 +73,19 @@ SCKEY       = "SCU89912...f4a70230"
 ### PowerShell on Windows
 
 ```powershell
-.\xdncov_windows_amd64.exe
+.\xdncov_yqt_windows_amd64.exe
 ```
 
 ### bash/zsh on Linux
 
 ```bash
-./xdncov_linux_amd64
+./xdncov_yqt_linux_amd64
 ```
 
 ### bash/zsh on MacOS
 
 ```bash
-./xdncov_darwin_amd64
+./xdncov_yqt_darwin_amd64
 ```
 
 ## 使用.service时
