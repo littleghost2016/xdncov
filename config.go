@@ -20,12 +20,34 @@ type StudentConfig struct {
 	City              string    `toml:"city"`
 	Area              string    `toml:"area"`
 	Address           string    `toml:"address"`
-	Tw                int       `toml:"tw"`
-	Sfzx              int       `toml:"sfzx"`
-	Sfcyglq           int       `toml:"sfcyglq"`
-	Sfyzz             int       `toml:"sfyzz"`
-	Ymtys             int       `toml:"ymtys"`
-	Qtqk              string    `toml:"qtqk"`
+	Szgjcs            string    `toml:"szgjcs"`
+	Szcs              string    `toml:"szcs"`
+	Szgj              string    `toml:"szgj"`
+	Zgfxdq            string    `toml:"zgfxdq"` // 中高风险地区
+	Mjry              string    `toml:"mjry"`   // 密接人员
+	Csmjry            string    `toml:"csmjry"`
+	Tw                string    `toml:"tw"`      // 体温
+	Sfzx              string    `toml:"sfzx"`    // 是否在校
+	Sfcyglq           string    `toml:"sfcyglq"` // 是否处于隔离期
+	Sfcxtz            string    `toml:"sfcxtz"`
+	Sfjcbh            string    `toml:"sfjcbh"`
+	Sfcxzysx          string    `toml:"sfcxzysx"`
+	Qksm              string    `toml:"qksm"`
+	Sfyyjc            string    `toml:"sfyyjc"`
+	Jcjgqr            string    `toml:"jcjgqr"`
+	Remark            string    `toml:"remark"`
+	Sfjcwhry          string    `toml:"sfjcwhry"` // 是否接触武汉人员
+	Sfjchbry          string    `toml:"sfjchbry"` // 是否接触河北人员
+	Gllx              string    `toml:"gllx"`
+	Glksrq            string    `toml:"glksrq"`
+	Jcbhlx            string    `toml:"jcbhlx"`
+	Jcbhrq            string    `toml:"jcbhrq"`
+	Ismoved           string    `toml:"ismoved"`
+	Bztcyy            string    `toml:"bztcyy"`
+	Sftjhb            string    `toml:"sftjhb"`   // 是否途径河北
+	Sftjwh            string    `toml:"sftjwh"`   // 是否途径武汉
+	Sfjcjwry          string    `toml:"sfjcjwry"` // 是否接触境外人员
+	Jcjg              string    `toml:"jcjg"`
 	SCKEY             string    `toml:"SCKEY"`
 	Cookie            string    `toml:"cookie"`
 	Path              string    `toml:"path"`

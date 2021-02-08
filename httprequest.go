@@ -39,17 +39,40 @@ func PostSaveForm(newClient *colly.Collector, config StudentConfig) {
 		"city":     config.City,
 		"area":     config.Area,
 		"address":  config.Address,
-		"tw":       strconv.Itoa(config.Tw),
-		"sfzx":     strconv.Itoa(config.Sfzx),
-		"sfcyglq":  strconv.Itoa(config.Sfcyglq),
-		"sfyzz":    strconv.Itoa(config.Sfyzz),
-		"ymtys":    strconv.Itoa(config.Ymtys),
-		"qtqk":     config.Qtqk,
+		"szgjcs":   config.Szgjcs,
+		"szcs":     config.Szcs,
+		"szgj":     config.Szgj,
+		"zgfxdq":   config.Zgfxdq,
+		"mjry":     config.Mjry,
+		"csmjry":   config.Csmjry,
+		"tw":       config.Tw,
+		"sfzx":     config.Sfzx,
+		"sfcyglq":  config.Sfcyglq,
+		"sfcxtz":   config.Sfcxtz,
+		"sfjcbh":   config.Sfjcbh,
+		"sfcxzysx": config.Sfcxzysx,
+		"qksm":     config.Qksm,
+		"sfyyjc":   config.Sfyyjc,
+		"jcjgqr":   config.Jcjgqr,
+		"remark":   config.Remark,
+		"sfjcwhry": config.Sfjcwhry,
+		"sfjchbry": config.Sfjchbry,
+		"gllx":     config.Gllx,
+		"glksrq":   config.Glksrq,
+		"jcbhlx":   config.Jcbhlx,
+		"jcbhrq":   config.Jcbhrq,
+		"ismoved":  config.Ismoved,
+		"bztcyy":   config.Bztcyy,
+		"sftjhb":   config.Sftjhb,
+		"sftjwh":   config.Sftjwh,
+		"sfjcjwry": config.Sfjcjwry,
+		"jcjg":     config.Jcjg,
 	}
 	err := newClient.Post(SaveURL, savePostForm)
 	if err != nil {
 		log.Fatal(2, err)
 	}
+
 }
 
 // PostWX 向server酱服务端发送消息
@@ -95,6 +118,9 @@ func SignIn(config StudentConfig) {
 				} else if tempResponse.M == "您已上报过" {
 					firstPostSuccessFlag = true
 					message = "使用cookie时查询到本阶段已上报过"
+				} else {
+					firstPostSuccessFlag = true
+					message = "使用cookie时返回的message为：" + tempResponse.M
 				}
 			}
 			StandardLog(config.ID, message)
@@ -129,6 +155,8 @@ func SignIn(config StudentConfig) {
 					UpdateConfig(config)
 				} else if tempResponse.M == "您已上报过" {
 					message = "登陆后查询到本阶段已上报过"
+				} else {
+					message = "登陆后返回的message为：" + tempResponse.M
 				}
 			} else {
 				message = "提交失败，或返回信息无法处理"
